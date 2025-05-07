@@ -13,15 +13,17 @@ type Opportunity = {
 export default function OpportunityTable() {
   const [data, setData] = useState<Opportunity[]>([]);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const fetchData = () => {
-    axios.get("http://localhost:3001/api/opportunities")
+    axios.get(API_URL)
       .then(res => setData(res.data))
-      .catch(err => console.error("Failed to fetch data:", err));
+      .catch(err => console.error("❌ Failed to fetch data:", err));
   };
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5000); // ⏱️ Refresh toutes les 5 sec
+    const interval = setInterval(fetchData, 5000); // Refresh toutes les 5s
     return () => clearInterval(interval);
   }, []);
 
