@@ -1,35 +1,40 @@
+// TriggerButton.tsx
+import { useState } from "react";
 import axios from "axios";
 
-export default function TriggerButton() {
-  const handleClick = async () => {
+const TriggerButton = () => {
+  const [status, setStatus] = useState("");
+
+  const handleTrigger = async () => {
+    setStatus("⏳ Lancement en cours...");
     try {
-      const res = await axios.post("http://localhost:3001/api/trigger");
-      alert("🚀 Executor lancé !");
-      console.log(res.data);
+      const res = await axios.post(import.meta.env.VITE_API_TRIGGER_URL || "/api/trigger");
+      setStatus(`✅ ${res.data || "Lancement réussi"}`);
     } catch (err) {
-      console.error("❌ Erreur de déclenchement :", err);
-      alert("Erreur lors de l'exécution");
+      console.error(err);
+      setStatus("❌ Erreur lors du déclenchement");
     }
   };
 
   return (
-    <div style={{ margin: "30px 0" }}>
+    <div style={{ margin: "20px 0" }}>
       <button
-        onClick={handleClick}
+        onClick={handleTrigger}
         style={{
-          background: "#00ffe0",
-          color: "#000",
+          padding: "12px 24px",
           fontSize: "16px",
           fontWeight: "bold",
-          padding: "12px 24px",
-          borderRadius: "8px",
+          background: "#00ff99",
           border: "none",
+          borderRadius: "8px",
           cursor: "pointer",
-          transition: "background 0.3s ease"
         }}
       >
-        ⚡ Lancer Arbitrage Manuellement
+        ⚡ Lancer Arbitrage Flashloan
       </button>
+      {status && <p style={{ marginTop: "10px" }}>{status}</p>}
     </div>
   );
-}
+};
+
+export default TriggerButton;
