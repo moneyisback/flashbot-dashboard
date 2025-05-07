@@ -1,0 +1,38 @@
+.stats-panel {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    max-width: 600px;
+  }
+  
+  .stats-panel h2 {
+    font-size: 1.6rem;
+    color: #222;
+    margin-bottom: 1rem;
+  }
+  
+  .stats-panel p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .stats-panel h3 {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    color: #333;
+  }
+  
+  .stats-panel ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .stats-panel li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
